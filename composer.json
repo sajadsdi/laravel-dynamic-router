@@ -1,0 +1,28 @@
+{
+    "name": "sajadsdi/laravel-dynamic-router",
+    "description": "Easy set routes in config",
+    "type": "laravel-package",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Sajadsdi\\LaravelDynamicRouter\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "SajaD SaeeDi",
+            "email": "thunder11like@gmail.com"
+        }
+    ],
+    "require": {
+        "php": "^8.0",
+        "laravel/framework": "^10.0"
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Sajadsdi\\LaravelDynamicRouter\\Providers\\LaravelDynamicRouterServiceProvider"
+            ]
+        }
+    }
+}
