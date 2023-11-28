@@ -1,5 +1,5 @@
 <?php
 use Sajadsdi\LaravelDynamicRouter\DynamicRouter;
 
-$laraRoutes = config('api-routes');
+$laraRoutes = config('routes-api');
 DynamicRouter::Process($laraRoutes);
