@@ -23,8 +23,8 @@ class LaravelDynamicRouterServiceProvider extends ServiceProvider
     private function configurePublishing()
     {
         if ($this->app->runningInConsole()) {
-            $this->publishes([__DIR__ . '/../../config/api-routes.php' => config_path('api-routes.php')], 'laravel-router-configure');
-            $this->publishes([__DIR__ . '/../../config/web-routes.php' => config_path('web-routes.php')], 'laravel-router-configure');
+            $this->publishes([__DIR__ . '/../../config/routes-api.php' => config_path('routes-api.php')], 'laravel-router-configure');
+            $this->publishes([__DIR__ . '/../../config/routes-web.php' => config_path('routes-web.php')], 'laravel-router-configure');
         }
     }
 
@@ -32,7 +32,7 @@ class LaravelDynamicRouterServiceProvider extends ServiceProvider
     {
         if ($this->app->runningInConsole()) {
             $this->publishes([__DIR__ . '/../../routes/api-routes.php' => app_path('routes/api-routes.php')], 'laravel-router-routes');
-            $this->publishes([__DIR__ . '/../../routes/web-routes.php' => config_path('routes/web-routes.php')], 'laravel-router-routes');
+            $this->publishes([__DIR__ . '/../../routes/web-routes.php' => app_path('routes/web-routes.php')], 'laravel-router-routes');
         }
     }
 

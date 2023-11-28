@@ -51,14 +51,14 @@ class InstallCommand extends Command
         $this->info("require __DIR__.'/web-routes.php'; added to web route ..... DONE");
 
         //require api-route.php in api.php
-        $webRout = file_get_contents(app_path('routes/api.php'));
+        $apiRout = file_get_contents(app_path('routes/api.php'));
 
-        if (Str::contains($webRout, "require __DIR__.'/api-routes.php';")) {
+        if (Str::contains($apiRout, "require __DIR__.'/api-routes.php';")) {
             $this->warn("require __DIR__.'/api-routes.php'; is exists in web route ............ SKIPPED");
             return;
         }
 
-        file_put_contents(app_path('routes/api.php'),$webRout . "\n\n require __DIR__.'/api-routes.php';");
+        file_put_contents(app_path('routes/api.php'),$apiRout . "\n\n require __DIR__.'/api-routes.php';");
         $this->info("require __DIR__.'/api-routes.php'; added to web route ..... DONE");
     }
 }
