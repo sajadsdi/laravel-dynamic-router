@@ -31,8 +31,8 @@ class LaravelDynamicRouterServiceProvider extends ServiceProvider
     private function routesPublishing()
     {
         if ($this->app->runningInConsole()) {
-            $this->publishes([__DIR__ . '/../../routes/api-routes.php' => app_path('routes/api-routes.php')], 'laravel-router-routes');
-            $this->publishes([__DIR__ . '/../../routes/web-routes.php' => app_path('routes/web-routes.php')], 'laravel-router-routes');
+            $this->publishes([__DIR__ . '/../../routes/api-routes.php' => base_path('routes/api-routes.php')], 'laravel-router-routes');
+            $this->publishes([__DIR__ . '/../../routes/web-routes.php' => base_path('routes/web-routes.php')], 'laravel-router-routes');
         }
     }
 
