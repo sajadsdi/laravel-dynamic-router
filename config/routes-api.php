@@ -5,7 +5,7 @@ return [
         'request_uri' => 'parent-test-url',
         'request_type' => 'get',
         'middleware' => [],
-        'controller' => '\Sajadsdi\LaravelDynamicRouter\Http\Controllers\DynamicRouterTestController',
+        'controller' => \Sajadsdi\LaravelDynamicRouter\Http\Controllers\DynamicRouterTestController::class,
         'method' => 'testApi',
         'routes' => [
             'child1' => [
@@ -16,7 +16,7 @@ return [
             'child2' => [
                 'request_uri' => 'child2-test-url',
                 'request_type' => 'get',
-                'controller' => '\Sajadsdi\LaravelDynamicRouter\Http\Controllers\DynamicRouterOtherTestController',
+                'controller' => \Sajadsdi\LaravelDynamicRouter\Http\Controllers\DynamicRouterOtherTestController::class,
                 'method' => 'testChildApi',
             ]
         ]
