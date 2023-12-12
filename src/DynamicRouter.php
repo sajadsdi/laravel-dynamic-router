@@ -8,11 +8,12 @@ class DynamicRouter
 {
     /**
      * @param array $routes
+     * @param string $groupName
      * @return void
      */
-    public static function Process(array $routes): void
+    public static function Process(array $routes, string $groupName = 'web'): void
     {
-        self::Router($routes);
+        self::Router($routes, $groupName);
     }
 
     /**
