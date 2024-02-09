@@ -27,15 +27,15 @@ class DynamicRouter
     private static function Router(array $routes, string $routeName = '', string $controller = '', string $uri = '', array|string $middleware = []): void
     {
         foreach ($routes as $name => $R) {
-            $ctl    = $R['controller'] ?? $controller;
-            $url    = $uri . '/' . $R['request_uri'];
-            $middle = array_merge(is_string($middleware) ? [$middleware] : $middleware, $R['middleware'] ?? []);
-            $fullName    = ($routeName ? $routeName . '.' : '') . $name;
+            $ctl      = $R['controller'] ?? $controller;
+            $url      = $uri . '/' . $R['request_uri'];
+            $middle   = array_merge(is_string($middleware) ? [$middleware] : $middleware, $R['middleware'] ?? []);
+            $fullName = ($routeName ? $routeName . '.' : '') . $name;
 
             $route = Route::match($R['request_type'], $url, [$ctl, $R['method']])->name($fullName)->middleware($middle);
 
-            if(isset($R['without_middleware'])){
-                 $route->withoutMiddleware($R['without_middleware']);
+            if (isset($R['without_middleware'])) {
+                $route->withoutMiddleware($R['without_middleware']);
             }
 
             if (isset($R['routes']) && is_array($R['routes'])) {
