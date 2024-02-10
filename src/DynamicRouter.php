@@ -21,25 +21,34 @@ class DynamicRouter
      * @param string $routeName
      * @param string $controller
      * @param string $uri
-     * @param array|string $middleware
+     * @param array $middleware
      * @return void
      */
-    private static function Router(array $routes, string $routeName = '', string $controller = '', string $uri = '', array|string $middleware = []): void
+    private static function Router(array $routes, string $routeName = '', string $controller = '', string $uri = '', array $middleware = []): void
     {
         foreach ($routes as $name => $R) {
-            $ctl      = $R['controller'] ?? $controller;
-            $url      = $uri . '/' . $R['request_uri'];
-            $middle   = array_merge(is_string($middleware) ? [$middleware] : $middleware, $R['middleware'] ?? []);
+            $ctl = $R['controller'] ?? $controller;
+
+            $url = $uri . '/' . $R['request_uri'];
+
+            $childMiddleware = [];
+
+            if (isset($R['middleware'])) {
+                $childMiddleware = is_array($R['middleware']) ? $R['middleware'] : [$R['middleware']];
+            }
+
+            $mergeMiddleware = array_merge($middleware, $childMiddleware);
+
             $fullName = ($routeName ? $routeName . '.' : '') . $name;
 
-            $route = Route::match($R['request_type'], $url, [$ctl, $R['method']])->name($fullName)->middleware($middle);
+            $route = Route::match($R['request_type'], $url, [$ctl, $R['method']])->name($fullName)->middleware($mergeMiddleware);
 
             if (isset($R['without_middleware'])) {
                 $route->withoutMiddleware($R['without_middleware']);
             }
 
             if (isset($R['routes']) && is_array($R['routes'])) {
-                self::Router($R['routes'], $fullName, $ctl, $url, $middle);
+                self::Router($R['routes'], $fullName, $ctl, $url, $mergeMiddleware);
             }
         }
     }
