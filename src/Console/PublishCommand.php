@@ -3,6 +3,7 @@
 namespace Sajadsdi\LaravelDynamicRouter\Console;
 
 use Illuminate\Console\Command;
+use Illuminate\Support\Facades\File;
 
 class PublishCommand extends Command
 {
@@ -37,12 +38,26 @@ class PublishCommand extends Command
     private function publishConfigs()
     {
         $this->comment('Publishing configure ...');
-        $this->call('vendor:publish', ['--tag' => "laravel-router-configure"]);
+
+        if (File::exists(base_path('routes/api.php'))) {
+            $this->call('vendor:publish', ['--tag' => "laravel-router-configure-api"]);
+        }
+
+        if (File::exists(base_path('routes/web.php'))) {
+            $this->call('vendor:publish', ['--tag' => "laravel-router-configure-web"]);
+        }
     }
 
     private function publishRoutes()
     {
         $this->comment('Publishing routes ...');
-        $this->call('vendor:publish', ['--tag' => "laravel-router-routes"]);
+
+        if (File::exists(base_path('routes/api.php'))) {
+            $this->call('vendor:publish', ['--tag' => "laravel-router-routes-api"]);
+        }
+
+        if (File::exists(base_path('routes/web.php'))) {
+            $this->call('vendor:publish', ['--tag' => "laravel-router-routes-web"]);
+        }
     }
 }
