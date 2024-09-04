@@ -29,7 +29,7 @@ class DynamicRouter
         foreach ($routes as $name => $R) {
             $ctl = $R['controller'] ?? $controller;
 
-            $url = $uri . '/' . $R['request_uri'];
+            $url = $uri . '/' . ($R['request_uri'] ?? str_replace('.', '-', $name));
 
             $mergedMiddleware = self::mergeMiddleware($middleware, $R['middleware'] ?? null);
 

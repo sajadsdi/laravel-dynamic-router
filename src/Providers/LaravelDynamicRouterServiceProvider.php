@@ -24,14 +24,14 @@ class LaravelDynamicRouterServiceProvider extends ServiceProvider
 
     private function configurePublishing()
     {
-        $this->publishes([__DIR__ . '/../../config/routes-api.php' => config_path('routes-api.php')], 'laravel-router-configure');
-        $this->publishes([__DIR__ . '/../../config/routes-web.php' => config_path('routes-web.php')], 'laravel-router-configure');
+        $this->publishes([__DIR__ . '/../../config/routes-api.php' => config_path('routes-api.php')], 'laravel-router-configure-api');
+        $this->publishes([__DIR__ . '/../../config/routes-web.php' => config_path('routes-web.php')], 'laravel-router-configure-web');
     }
 
     private function routesPublishing()
     {
-        $this->publishes([__DIR__ . '/../../routes/api-routes.php' => base_path('routes/api-routes.php')], 'laravel-router-routes');
-        $this->publishes([__DIR__ . '/../../routes/web-routes.php' => base_path('routes/web-routes.php')], 'laravel-router-routes');
+        $this->publishes([__DIR__ . '/../../routes/api-routes.php' => base_path('routes/api-routes.php')], 'laravel-router-routes-api');
+        $this->publishes([__DIR__ . '/../../routes/web-routes.php' => base_path('routes/web-routes.php')], 'laravel-router-routes-web');
     }
 
     private function registerCommands()
